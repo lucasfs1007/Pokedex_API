@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_app/erros/failures.dart';
 import 'package:pokedex_app/repositories/pokemon_repositories.dart';
 import 'package:pokedex_app/views/erro_page.dart';
 import 'package:pokedex_app/views/home_page.dart';
@@ -26,7 +27,7 @@ class HomeContainer extends StatelessWidget {
 
           if (snapshot.hasError) {
             return ErroPage(
-              erro: snapshot.error.toString(),
+              erro: (snapshot.error as Failure).message!,
             );
           }
 

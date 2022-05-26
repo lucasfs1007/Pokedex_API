@@ -9,22 +9,18 @@ class Pokemon {
 
   factory Pokemon.fromMap(Map<String, dynamic> json) {
     return Pokemon(
-      name: json['nome'],
+      name: json['name'],
       image: json['img'],
       id: json['id'],
       num: json['num'],
-      type: (json['type'] as List<dynamic>)
-          .map(
-            (e) => e as String,
-          )
-          .toList(),
+      type: (json['type'] as List<dynamic>).map((e) => e as String).toList(),
     );
   }
   Pokemon({
     required this.name,
     required this.image,
-    required this.type,
     required this.id,
     required this.num,
+    required this.type,
   });
 }

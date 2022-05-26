@@ -26,9 +26,10 @@ class HomeContainer extends StatelessWidget {
           }
 
           if (snapshot.hasError) {
-            return ErroPage(
+            var erroPage = ErroPage(
               erro: (snapshot.error as Failure).message!,
             );
+            return erroPage;
           }
 
           return Container();

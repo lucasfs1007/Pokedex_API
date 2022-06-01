@@ -16,7 +16,10 @@ class DetailsArguments {
 
 class DetailsContainer extends StatelessWidget {
   const DetailsContainer(
-      {Key? key, required this.repository, required this.arguments})
+      {Key? key,
+      required this.repository,
+      required this.arguments,
+      required void Function() onBack})
       : super(key: key);
   final IPokemonRepository repository;
   final DetailsArguments arguments;

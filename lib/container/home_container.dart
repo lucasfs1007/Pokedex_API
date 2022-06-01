@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex_app/details/details_container.dart';
 import 'package:pokedex_app/erros/failures.dart';
 import 'package:pokedex_app/repositories/pokemon_repositories.dart';
 import 'package:pokedex_app/views/erro_page.dart';
@@ -12,7 +13,7 @@ class HomeContainer extends StatelessWidget {
       {Key? key, required this.repository, required this.onItemTap})
       : super(key: key);
   final IPokemonRepository repository;
-  final Function(String) onItemTap;
+  final Function(String, DetailsArguments) onItemTap;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,10 @@ class HomeContainer extends StatelessWidget {
 
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {
-            return HomePage(list: snapshot.data!);
+            return HomePage(
+              list: snapshot.data!,
+              onItemTap: (String, DetailsArguments) {},
+            );
           }
 
           if (snapshot.hasError) {

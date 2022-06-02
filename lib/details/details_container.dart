@@ -10,8 +10,8 @@ import '../views/loading_page.dart';
 import 'details_page.dart';
 
 class DetailsArguments {
-  DetailsArguments({required this.name});
-  final String name;
+  DetailsArguments({required this.pokemon});
+  final Pokemon pokemon;
 }
 
 class DetailsContainer extends StatelessWidget {
@@ -34,7 +34,7 @@ class DetailsContainer extends StatelessWidget {
 
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.hasData) {
-            return DetailsPage(
+            return DetailPage(
               name: arguments.name,
               list: snapshot.data!,
             );

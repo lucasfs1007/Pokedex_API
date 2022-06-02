@@ -13,6 +13,7 @@ class DetailPage extends StatefulWidget {
     required this.onBack,
     required this.controller,
     required this.onChangePokemon,
+    required String name,
   }) : super(key: key);
   final Pokemon pokemon;
   final List<Pokemon> list;

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:pokedex_app/details/details_item_list.dart';
 
 import '../models/pokemon_model.dart';
 
@@ -21,15 +22,10 @@ class DetailListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 102,
-      left: 0,
-      right: 0,
-      height: 350,
+    return SliverToBoxAdapter(
       child: Container(
         color: pokemon.baseColor,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -54,7 +50,7 @@ class DetailListWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 56.0),
               child: SizedBox(
-                height: 200,
+                height: 300,
                 width: double.infinity,
                 child: PageView(
                   onPageChanged: (index) {
@@ -63,26 +59,7 @@ class DetailListWidget extends StatelessWidget {
                   controller: controller,
                   children: list.map((e) {
                     bool diff = e.name != pokemon.name;
-                    return AnimatedOpacity(
-                      duration: Duration(milliseconds: 200),
-                      opacity: diff ? 0.4 : 1.0,
-                      child: TweenAnimationBuilder<double>(
-                          duration: Duration(milliseconds: 200),
-                          curve: Curves.easeIn,
-                          tween: Tween<double>(
-                              end: diff ? 100 : 300, begin: diff ? 300 : 100),
-                          builder: (context, value, child) {
-                            return Center(
-                              child: Image.network(
-                                e.image,
-                                width: value,
-                                fit: BoxFit.contain,
-                                color:
-                                    diff ? Colors.black.withOpacity(0.4) : null,
-                              ),
-                            );
-                          }),
-                    );
+                    return DetailItemListWidget(isDiff: diff, pokemon: e);
                   }).toList(),
                 ),
               ),
